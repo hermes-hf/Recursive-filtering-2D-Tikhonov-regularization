@@ -12,13 +12,10 @@ CFLAGS := -Wno-unknown-pragmas -Ofast -march=native -Wall -pedantic \
 
 
 deriche_block_filter: deriche_block_filter.cpp
-	g++ -I ../../code/extern/eigen/ -o "$@" "$^" -Ofast -march=native
-
-deriche_block_filter_openmp: deriche_block_filter.cpp
-	g++ -I ../../code/extern/eigen/ -o "$@" "$^" -Ofast -march=native -fopenmp
-
+	g++ -I ../extern/eigen/ -o "$@" "$^" -Ofast -march=native
+	
 fftwCode: fftwCode.cpp
-	g++ -I ../../code/extern/eigen/ -o "$@" "$^" -Ofast -march=native -lfftw3f
+	g++ -I ../extern/eigen/ -o "$@" "$^" -Ofast -march=native -lfftw3f
 
 clean:
 	rm -f tikhonov_recursive_filter_eigen tikhonov_recursive_filter tikhonov_recursive_filter_openmp tikhonov_recursive_filter_eigen_openmp avx_filter avx_filter_openmp fftwCode deriche_block_filter deriche_block_filter_openmp

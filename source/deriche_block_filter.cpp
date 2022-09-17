@@ -1720,19 +1720,20 @@ int main(int argc, char **argv){
     float Sy[ng] = {0.6545635533961315,1.1779829430373405,2.2920610765054583,
     3.7809509653843483,6.1887121562837715,9.118791816256666,17.27733314968284};
     
-    ng = 5; //using only 5 Gaussian terms -> below 1% norm2 error
+    //ng = 5; //using only 5 Gaussian terms -> below 1% norm2 error
 
     /*Initialize Image */
     
     float *I = (float*)aligned_alloc(alignment,sizeof(float) * N*N);
     float *O;
     for(i=1;i<N*N;i++){
-        I[i] = rand();
+        //I[i] = rand();
+        I[i] = 0;
     }
     //all impulses
-    //I[ind(N/2,N/2,N)] = 1.0;
-    //I[ind(0,0,N)] = 1.0;
-    //I[ind(N-1,N-1,N)] = 1.0;
+    I[ind(N/2,N/2,N)] = 1.0;
+    I[ind(0,0,N)] = 1.0;
+    I[ind(N-1,N-1,N)] = 1.0;
 
     auto start = high_resolution_clock::now();
     auto stop = high_resolution_clock::now();
@@ -1752,13 +1753,13 @@ int main(int argc, char **argv){
 
     printf("%f",derichet);
 
-    //FILE *f;
-    //f = fopen("kernel.csv", "w");
-    //for(int x=0;x<N;x++){
-    //    for(int y=0;y<N-1;y++)
-    //        fprintf(f,"%f,",O[ind(x,y,N)]);
-    //    fprintf(f,"%f\n",O[ind(x,N-1,N)]);
-    //}
+    FILE *f;
+    f = fopen("kernel.csv", "w");
+    for(int x=0;x<N;x++){
+        for(int y=0;y<N-1;y++)
+            fprintf(f,"%f,",O[ind(x,y,N)]);
+        fprintf(f,"%f\n",O[ind(x,N-1,N)]);
+    }
     
     return 0;
 }
