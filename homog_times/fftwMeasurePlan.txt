@@ -1,0 +1,5 @@
+Size 1024 time: 0.67785s
+Size 2048 time: 1.77191s
+Size 4096 time: 6.48017s
+Size 8192 time: 11.35528s
+Size 16384 time: 28.04122s
